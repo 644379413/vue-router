@@ -2,6 +2,21 @@
 
 There are a number of options you can use to customize the router behavior when creating a router instance.
 
+For example:
+
+``` js
+// Create a router instance.
+// You can pass in additional options here
+var router = new VueRouter({hashbang: true})
+
+...
+
+// Now we can start the app!
+// The router will create an instance of App and mount to
+// the element matching the selector #app.
+router.start(App, '#app')
+```
+
 #### hashbang
 
 - default: true
@@ -16,6 +31,8 @@ There are a number of options you can use to customize the router behavior when 
   Enables HTML5 history mode. Leverages `history.pushState()` and `history.replaceState()` for history management.
 
   **Note**: when using the history mode, the server needs to be [properly configured](http://readystate4.com/2012/05/17/nginx-and-apache-rewrite-to-support-html5-pushstate/) so that a user directly visiting a deep link on your site doesn't get a 404.
+
+  **Note**: if you plan to serve your files with the `file://` protocol (for example, when using with [Electron](electron.atom.io)), enabling this mode will break your app. That is because your app URLs would look like `file:///path/to/your/app/index.html/my-route/`, which makes no sense in UNIX filesystem architecture.
 
 ####  abstract
 
